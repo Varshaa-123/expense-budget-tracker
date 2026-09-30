@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 /** Controllers only receive requests and call the service. No SQL, no business logic. */
 @RestController
 @RequestMapping("/api/users")
-@CrossOrigin(origins = "http://localhost:5173")   // allow the React app to call this API
+@CrossOrigin(origins = "https://ravishing-fulfillment-production-fd0f.up.railway.app")  // allow the React app to call this API
 public class UserController {
 
     private final UserService userService;
