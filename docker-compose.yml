@@ -1,0 +1,27 @@
+services:
+
+  mysql:
+    image: mysql:8.0
+    container_name: expense-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: expense_tracker
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  backend:
+    image: expense-backend:latest
+    container_name: expense-backend
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/expense_tracker?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+    ports:
+      - "8091:8091"
+
+volumes:
+  mysql_data:
